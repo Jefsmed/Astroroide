@@ -1,0 +1,8 @@
+.vs/
+Binaries/
+Binaries/
+Intermediate/
+Saved/
+*.modules
+*.pdb
+*.lib
