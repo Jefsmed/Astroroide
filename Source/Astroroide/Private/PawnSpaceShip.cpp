@@ -9,12 +9,18 @@ APawnSpaceShip::APawnSpaceShip()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	//Components attachments
+
+	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
+	Root->SetupAttachment(RootComponent);
+
 }
 
 // Called when the game starts or when spawned
 void APawnSpaceShip::BeginPlay()
 {
 	Super::BeginPlay();
+
 	
 }
 
@@ -32,3 +38,26 @@ void APawnSpaceShip::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+
+
+//Basic Movements - Replicated Network
+
+void APawnSpaceShip::MoveForwardBackward(float AxisValue) {
+
+	X_ForwardBackward = 1 * AxisValue;
+	AddActorLocalOffset(FVector(X_ForwardBackward, 0, 0));
+
+}
+
+void APawnSpaceShip::MoveRightLeft(float AxisValue) {
+
+	Y_RightLeft = 1 * AxisValue;
+	AddActorLocalOffset(FVector(0, Y_RightLeft, 0));
+
+}
+
+void APawnSpaceShip::RotationForwardVector(FVector& Value) {
+	
+	Value = FVector(FMath::Clamp(X_ForwardBackward, -1.0f, 1.0f), FMath::Clamp(Y_RightLeft, -1.0f, 1.0f), 0);
+
+}
