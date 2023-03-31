@@ -18,9 +18,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SpaceshipMesh")
 		USkeletalMesh* Mesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SpaceshipMesh")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
 		float BulletRate;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
+		float Acceleration;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
+		int HealthPoints;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
+		int InitialDamage;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
+		float BulletRate;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
+		int PointForUnlock;
 
 	FSPlayerSpaceShips();
 	~FSPlayerSpaceShips();
