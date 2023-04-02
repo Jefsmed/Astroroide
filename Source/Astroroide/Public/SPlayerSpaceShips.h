@@ -16,8 +16,8 @@ public:
 		//The following member variable will be accessible by Blueprint Graphs.
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SpaceshipMesh")
-		USkeletalMesh* Mesh;
-
+		UStaticMesh* Mesh;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
 		float BulletRate;
 	
@@ -29,9 +29,6 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
 		int InitialDamage;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
-		float BulletRate;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Details")
 		int PointForUnlock;

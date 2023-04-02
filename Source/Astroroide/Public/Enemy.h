@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EEnemyType.h"
+#include "EEnemy_Type.h"
 #include "GameFramework/Actor.h"
 #include "Enemy.generated.h"
 
@@ -23,25 +23,18 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-//Components list bellow
-
-public:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-		UStaticMeshComponent* Mesh;
 		
 //Variables list bellow
 
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Config")
-		Bool IsAlien;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
+		bool IsAlien;
+
+	UPROPERTY(VIsibleAnywhere, BlueprintReadWrite, Category = "Config")
+		FEEnemy_Type Type;
 		
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Config")
-		EEnemyType Type;
-		
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Config")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Config")
 		int PointsForDestroyingIt;
 		
 
