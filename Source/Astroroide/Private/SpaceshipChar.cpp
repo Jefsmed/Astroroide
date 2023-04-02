@@ -25,7 +25,10 @@ ASpaceshipChar::ASpaceshipChar ()
 void ASpaceshipChar::GetLifetimeReplicatedProps(TArray< FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(ASpaceshipChar, BulletRate);
+	DOREPLIFETIME(ASpaceshipChar, Acceleration);
 	DOREPLIFETIME(ASpaceshipChar, Health);
+	DOREPLIFETIME(ASpaceshipChar, InitialDamage);
 
 }
 
