@@ -15,8 +15,17 @@ AAstroroideController::AAstroroideController() {
 	bReplicates = true;
 	SetReplicates(true);
 
-	SpaceshipSelected = FEPlayerSpaceships::None;
+//Checks if there are any data slots saved from the spaceship selection previously chosen by the player.
+	/**Configure save name*/
 	SaveSpaceshipName = "Spaceship";
+
+	LoadSpaceshipSelected();
+
+	if (SpaceshipSelected == FEPlayerSpaceships::None) {
+
+		CreateSaveSpaceshipSelected();
+
+	}
 
 }
 
@@ -54,7 +63,7 @@ void AAstroroideController::SaveSpaceshipSelected() {
 
 	const bool IsSaved = UGameplayStatics::SaveGameToSlot(SaveGameSpaceshipSelected, SaveSpaceshipName, 0);
 
-	LogIfGameWasSavedOrNot(IsSaved);
+	//- Print string-> LogIfGameWasSavedOrNot(IsSaved);
 
 }
 
@@ -63,27 +72,33 @@ void AAstroroideController::LoadSpaceshipSelected() {
 	USaveGame* LoadedSpaceship = UGameplayStatics::LoadGameFromSlot(SaveSpaceshipName, 0);
 	SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(LoadedSpaceship);
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Trying to load a saved game."));
+	//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Trying to load a saved game."));
 
-	if (!SaveGameSpaceshipSelected) {
+	if (LoadedSpaceship!=SaveGameSpaceshipSelected) {
 
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("No saved games found. Trying to save a new one."));
+		CreateSaveSpaceshipSelected();
 
-		SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(UGameplayStatics::CreateSaveGameObject(USaveSpaceshipSelect::StaticClass()));
-		const bool IsSaved = UGameplayStatics::SaveGameToSlot(SaveGameSpaceshipSelected, SaveSpaceshipName, 0);
-
-		SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
-
-		LogIfGameWasSavedOrNot(IsSaved);
+		//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("No saved games found. Trying to save a new one."));
 
 	}
 	else {
 
 		SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
 
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saved game found. Loaded."));
+		//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saved game found. Loaded."));
 
 	}
+
+}
+
+void AAstroroideController::CreateSaveSpaceshipSelected() {
+
+	SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(UGameplayStatics::CreateSaveGameObject(USaveSpaceshipSelect::StaticClass()));
+	const bool IsSaved = UGameplayStatics::SaveGameToSlot(SaveGameSpaceshipSelected, SaveSpaceshipName, 0);
+
+	SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
+
+	//- Print string-> LogIfGameWasSavedOrNot(IsSaved);
 
 }
 

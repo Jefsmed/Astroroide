@@ -62,5 +62,8 @@ public:
 		void LoadSpaceshipSelected();
 
 	UFUNCTION(BlueprintCallable, Category = "LoadSaveSpaceship")
+		void CreateSaveSpaceshipSelected();
+
+	UFUNCTION(BlueprintCallable, Category = "LoadSaveSpaceship")
 		void LogIfGameWasSavedOrNot(const bool IsSaved);
 };
