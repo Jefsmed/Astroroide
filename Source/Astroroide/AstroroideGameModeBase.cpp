@@ -14,6 +14,14 @@ AAstroroideGameModeBase::AAstroroideGameModeBase() {
 
 }
 
+void AAstroroideGameModeBase::PostLogin(APlayerController* NewPlayer) {
+
+	CurrentController = Cast<AAstroroideController>(NewPlayer);
+
+}
+
+
+
 // Called when the game starts or when spawned
 void AAstroroideGameModeBase::BeginPlay()
 {

@@ -18,10 +18,15 @@ public:
 	// Sets default values for this Game Mode's properties
 	AAstroroideGameModeBase();
 
+	virtual void PostLogin(APlayerController* NewPlayer);
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+public:
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "PlayerController")
+		APlayerController* CurrentController;
 
 };

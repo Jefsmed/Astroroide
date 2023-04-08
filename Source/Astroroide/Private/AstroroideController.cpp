@@ -37,6 +37,7 @@ void AAstroroideController::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 
 }
 
+
 void AAstroroideController::SetSpaceshipSelected(FEPlayerSpaceships Select) {
 
 	SpaceshipSelected = Select;
@@ -57,7 +58,7 @@ void AAstroroideController::GetSpaceshipSelected(FEPlayerSpaceships& _SpaceshipS
 // Save and Load spaceship selected for player
 void AAstroroideController::SaveSpaceshipSelected() {
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saving game..."));
+	//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saving game..."));
 
 	SaveGameSpaceshipSelected->SpaceshipSelect = SpaceshipSelected;
 
@@ -72,20 +73,20 @@ void AAstroroideController::LoadSpaceshipSelected() {
 	USaveGame* LoadedSpaceship = UGameplayStatics::LoadGameFromSlot(SaveSpaceshipName, 0);
 	SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(LoadedSpaceship);
 
-	//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Trying to load a saved game."));
+	//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Trying to load a saved game. SaveGameSpaceshipSelected->SpaceshipSelect"));
 
 	if (LoadedSpaceship!=SaveGameSpaceshipSelected) {
 
 		CreateSaveSpaceshipSelected();
 
-		//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("No saved games found. Trying to save a new one."));
+		//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("No saved games found. Trying to save a new one."));
 
 	}
 	else {
 
 		SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
 
-		//- Print string-> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saved game found. Loaded."));
+		//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saved game found. Loaded."));
 
 	}
 
