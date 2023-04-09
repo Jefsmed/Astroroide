@@ -22,6 +22,6 @@ public:
 	USaveSpaceshipSelect();
 
 	UPROPERTY(BlueprintReadWrite)
-		FEPlayerSpaceships SpaceshipSelect;
+		FEPlayerSpaceships SaveSpaceshipSelect;
 	
 };

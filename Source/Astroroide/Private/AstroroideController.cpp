@@ -15,8 +15,8 @@ AAstroroideController::AAstroroideController() {
 	bReplicates = true;
 	SetReplicates(true);
 
-//Checks if there are any data slots saved from the spaceship selection previously chosen by the player.
-	/**Configure save name*/
+	//Checks if there are any data slots saved from the spaceship selection previously chosen by the player.
+		/**Configure save name*/
 	SaveSpaceshipName = "Spaceship";
 
 	LoadSpaceshipSelected();
@@ -60,7 +60,12 @@ void AAstroroideController::SaveSpaceshipSelected() {
 
 	//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saving game..."));
 
-	SaveGameSpaceshipSelected->SpaceshipSelect = SpaceshipSelected;
+	if (SaveGameSpaceshipSelected == nullptr){
+
+		CreateSaveSpaceshipSelected();
+	}
+
+	SaveGameSpaceshipSelected->SaveSpaceshipSelect = SpaceshipSelected;
 
 	const bool IsSaved = UGameplayStatics::SaveGameToSlot(SaveGameSpaceshipSelected, SaveSpaceshipName, 0);
 
@@ -69,7 +74,7 @@ void AAstroroideController::SaveSpaceshipSelected() {
 }
 
 void AAstroroideController::LoadSpaceshipSelected() {
-
+	
 	USaveGame* LoadedSpaceship = UGameplayStatics::LoadGameFromSlot(SaveSpaceshipName, 0);
 	SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(LoadedSpaceship);
 
@@ -84,20 +89,20 @@ void AAstroroideController::LoadSpaceshipSelected() {
 	}
 	else {
 
-		SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
+		SpaceshipSelected = SaveGameSpaceshipSelected->SaveSpaceshipSelect;
 
 		//Print string---> GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Saved game found. Loaded."));
-
 	}
-
+		
 }
 
 void AAstroroideController::CreateSaveSpaceshipSelected() {
 
 	SaveGameSpaceshipSelected = Cast<USaveSpaceshipSelect>(UGameplayStatics::CreateSaveGameObject(USaveSpaceshipSelect::StaticClass()));
+	SaveGameSpaceshipSelected->SaveSpaceshipSelect = SpaceshipSelected;
 	const bool IsSaved = UGameplayStatics::SaveGameToSlot(SaveGameSpaceshipSelected, SaveSpaceshipName, 0);
 
-	SpaceshipSelected = SaveGameSpaceshipSelected->SpaceshipSelect;
+	SpaceshipSelected = SaveGameSpaceshipSelected->SaveSpaceshipSelect;
 
 	//- Print string-> LogIfGameWasSavedOrNot(IsSaved);
 

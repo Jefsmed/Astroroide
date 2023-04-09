@@ -5,5 +5,5 @@
 
 USaveSpaceshipSelect::USaveSpaceshipSelect() {
 
-	SpaceshipSelect = FEPlayerSpaceships::None;
+	SaveSpaceshipSelect = FEPlayerSpaceships::None;
 }
